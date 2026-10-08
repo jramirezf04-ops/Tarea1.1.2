@@ -40,8 +40,11 @@ El reenvio de puertos no crea una nueva interfaz, sino que reutiliza la interfaz
 | status | Para comproabr si la máquina está encendida, apagada o no está creada. |
 | ssh | Para entrar a la terminal de la máquina virtual |
 | reload | Para reiniciar la máquina |
-| 
-
-  
+| provision | Para forzar la ejecución de los scripts de aprovisonamiento sin tener que reiniciar la máqina |
+| halt | Para apagar la máquina virtual |
+| destroy | Para eliminar completamente la máquina virtual y liberar el espacio en el disco |
 
 ## Parte B. Mi primera máquina en Vagrant
+
+- Antes de nada deberé descargar Vagrant en mi ordenador
+
