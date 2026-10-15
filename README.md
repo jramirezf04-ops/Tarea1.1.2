@@ -58,7 +58,7 @@ Para ello ejecutaremos los siguientes comandos:
 Una vez termine de arrancar la máquina, entraremos con ssh:  
 `vagrant ssh`
 
-![Comprobaciones desde ssh]()  
+![Comprobaciones desde ssh](images/01.png)  
 
 
 ## Parte C. Completa el Vagrantfile  
