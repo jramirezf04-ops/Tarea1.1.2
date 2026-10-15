@@ -63,7 +63,10 @@ Una vez termine de arrancar la máquina, entraremos con ssh:
 
 ## Parte C. Completa el Vagrantfile  
 
+![vagrantfile](images/04.png)
+
+![Comprobación del funcionamiento](images/03.png)
 
 ## Partes D. Aprovisiona Apache
 Deberemos crear un fichero .sh con un script que instale apache en Debian 12  
-![Script en bash]()
+![Script en bash](images/02.png)
