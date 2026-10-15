@@ -48,3 +48,22 @@ El reenvio de puertos no crea una nueva interfaz, sino que reutiliza la interfaz
 
 - Antes de nada deberé descargar Vagrant en mi ordenador
 
+Una vez descargado crearemos una carpeta llamada vagrant y abriremos un terminal en ella, donde iniciaremos vagrant desde ahí
+
+Para ello ejecutaremos los siguientes comandos:  
+`vagrant init debian/bookworm64`  
+
+`vagrant up`  
+
+Una vez termine de arrancar la máquina, entraremos con ssh:  
+`vagrant ssh`
+
+![Comprobaciones desde ssh]()  
+
+
+## Parte C. Completa el Vagrantfile  
+
+
+## Partes D. Aprovisiona Apache
+Deberemos crear un fichero .sh con un script que instale apache en Debian 12  
+![Script en bash]()
