@@ -65,8 +65,55 @@ Una vez termine de arrancar la máquina, entraremos con ssh:
 
 ![vagrantfile](images/04.png)
 
+* Código del vagrantfile  
+Vagrant.configure("2") do |config|  
+  config.vm.box = "debian/bookworm64"  - Descarga la imagen de Debian 12  
+  config.vm.hostname = "servidor-Javier" - Asigna el nombre a la máquina  
+  
+  <!-- Segunda interfaz en modo Red Interna (aislada del host) -->  
+  config.vm.network "private_network", ip: "192.168.56.10", virtualbox__intnet: "red_lab"  
+  
+  <!-- Reenvía el puerto 80 de la VM al 8080 del host, solo accesible desde localhost -->  
+  config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"  
+  
+  <!-- Llama al script externo para instalar Apache -->  
+  config.vm.provision "shell", path: "instalar_apache.sh"  
+end  
+
 ![Comprobación del funcionamiento](images/03.png)
 
 ## Partes D. Aprovisiona Apache
 Deberemos crear un fichero .sh con un script que instale apache en Debian 12  
 ![Script en bash](images/02.png)
+
+* Codigo del .sh  
+  #!/bin/bash
+<!-- 1. Actualizamos la lista de paquetes -->  
+apt-get update  
+
+<!-- 2. Instalamos Apache2 -->   
+apt-get install -y apache2  
+
+<!-- 3. Nos aseguramos de que el servicio se active e inicie automáticamente -->  
+systemctl enable --now apache2  
+
+<!-- 4. Obtenemos el hostname actual de la máquina -->  
+HOSTNAME_ACTUAL=$(hostname)  
+
+<!-- 5. Creamos una página web sencilla sobreescribiendo el index.html por defecto -->  
+cat <<EOF > /var/www/html/index.html  
+<!DOCTYPE html>  
+<html lang="es">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>Servidor de Pruebas Vagrant</title>  
+</head>  
+<body>  
+    <h1>¡Hola! Soy Javier</h1>  
+    <h2>El hostname de esta máquina es: $HOSTNAME_ACTUAL</h2>  
+    <p>Servidor Apache aprovisionado con éxito.</p>  
+</body>  
+</html>  
+EOF  
+
+echo "Aprovisionamiento de Apache finalizado."  
